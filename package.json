@@ -113,10 +113,10 @@
     "webpack-cli": "3.1.0",
     "webpack-flush-chunks": "^2.0.3",
     "whatwg-fetch": "^3.6.2",
+    "yarn": "1.22.21",
     "zubair-react-form-builder": "^1.1.1"
   },
-  "resolutions":
-  {
+  "resolutions": {
     "faker": "^4.1.0",
     "sockjs-client": "1.5.2"
   }

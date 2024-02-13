@@ -14280,6 +14280,11 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
+yarn@1.22.21:
+  version "1.22.21"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.21.tgz#1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
+  integrity sha512-ynXaJsADJ9JiZ84zU25XkPGOvVMmZ5b7tmTSpKURYwgELdjucAOydqIOrOfTxVYcNXe91xvLZwcRh68SR3liCg==
+
 zubair-react-form-builder@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/zubair-react-form-builder/-/zubair-react-form-builder-1.1.1.tgz#d6b88a0e7dd6ca120a7f54df5b59400faaaa7042"
