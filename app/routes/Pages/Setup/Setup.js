@@ -66,7 +66,7 @@ class setupAdmin extends React.Component{
         };
         
 
-        Fetcher(`${port}/setup`, 'POST', payload, init).then((res) => {
+        Fetcher(`${port}/api/v1/setup`, 'POST', payload, init).then((res) => {
             if(res.message === 'setup-initialized'){
                 return this.props.history.push("/login");
             }

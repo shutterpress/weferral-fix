@@ -1,3 +1,3 @@
-const port = 'http://localhost:3001'
+const port = "https://weferral.igambling.com"
 
 export default port;

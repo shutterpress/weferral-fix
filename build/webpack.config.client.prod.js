@@ -147,7 +147,9 @@ module.exports = {
         historyApiFallback: {
             index: '/'
         },
+        allowedHosts: [ '*' ],
         host: '0.0.0.0',
-        port: 4100
+        port: 4100,
+        disableHostCheck: true
     }
 }
