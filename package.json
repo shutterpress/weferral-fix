@@ -11,6 +11,7 @@
   },
   "author": "Ezeh Uche",
   "license": "ISC",
+  "devtool": "source-map",
   "engines": {
     "node": "18.x"
   },
