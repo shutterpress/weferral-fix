@@ -106,6 +106,7 @@
     "recharts": "^1.6.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "serve": "^14.2.1",
     "text-mask-addons": "^3.8.0",
     "uuid": "^3.3.2",
     "webpack-cli": "3.1.0",

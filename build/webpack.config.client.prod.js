@@ -11,10 +11,10 @@ var config = require("./../config");
 var BASE_PATH = process.env.BASE_PATH || "/";
 
 module.exports = {
-  devtool: "inline-source-map",
+  devtool: false,
   mode: "production",
   entry: {
-    app: ["react-hot-loader/patch", path.join(config.srcDir, "index.js")],
+    app: [path.join(config.srcDir, "index.js")],
   },
   output: {
     filename: "[name].bundle.js",
@@ -143,16 +143,5 @@ module.exports = {
       },
     ],
   },
-  devServer: {
-    hot: false,
-    contentBase: config.distDir,
-    compress: true,
-    historyApiFallback: {
-      index: "/",
-    },
-    allowedHosts: ["*"],
-    host: "0.0.0.0",
-    port: 4100,
-    disableHostCheck: true,
-  },
+  // devServer removed
 };
