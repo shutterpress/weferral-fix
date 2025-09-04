@@ -1,3 +1,3 @@
-const port = "https://weferral.igambling.com"
+const port = "https://affiliate.shutterpress.io"
 
 export default port;
