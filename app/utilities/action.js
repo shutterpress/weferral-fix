@@ -1,99 +1,32 @@
-import Fetcher from './fetcher';
-import port from '../port';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Fetcher from "../utilities/fetcher";
+import port from "../port";
 
-/*
- * action types
- */
+export default function Index() {
+  const dispatch = useDispatch();
 
-export const SET_OPTIONS = 'SET_OPTIONS';
-export const SET_UID = 'SET_UID';
-export const SET_PID = 'SET_PID';
-export const SET_USER = "SET_USER";
-export const SET_PARTICIPANT = "SET_PARTICIPANT";
-export const ADD_NOTIFICATION = "ADD_NOTIFICATION";
-export const SET_NOTIFICATIONS = "SET_NOTIFICATIONS";
-export const SET_FORM_DATA = "SET_FORM_DATA";
-export const INITIALIZE = "INITIALIZE";
+  async function initializedState() {
+    let initialState = {};
 
-/*
- * other constants
- */
-export async function fetchUsers(uid = null, callback){
-    let user = null;
-    if(uid){
-        // console.log("redux action setUser", uid);
-        Fetcher(`${port}/api/v1/users/own`).then(function (response) {
-            // console.log("user response", response);
-            if (!response.error && response.length) {
-                user = response[0];
-                callback(null, user);
-            } else {
-                callback(response.error)
-                // console.log("error fetching own user after login");
-            }
-        });
+    let opts = await Fetcher(`${port}/api/v1/system-options/public`);
+    if (!opts || typeof opts !== "object") {
+      console.error("Expected JSON for system options, got:", opts);
+      opts = {};
     }
-    callback("no uid");
-}
+    initialState.options = opts;
 
-export async function fetchParticipants(pid = null, callback){
-    let participant = null;
-    if(pid){
-        // console.log("redux action setpParticipant", pid);
-        Fetcher(`${port}/api/v1/participants/own`).then(function (response) {
-            // console.log("user response", response);
-            if (!response.error && response.length) {
-                participant = response[0];
-                callback(null, participant);
-            } else {
-                callback(response.error)
-                // console.log("error fetching own user after login");
-            }
-        });
-    }
-    callback("no pid");
-}
+    const userResp = await Fetcher(`${port}/api/v1/users/own`);
+    initialState.user = Array.isArray(userResp) ? userResp[0] : null;
+    const notesResp = await Fetcher(`${port}/api/v1/notifications/own`);
+    initialState.notifications = Array.isArray(notesResp) ? notesResp : [];
 
+    dispatch({ type: "INITIALIZE", initialState });
+  }
 
-/*
- * action creators
- */
+  useEffect(() => {
+    initializedState();
+  }, []);
 
-export function setOptions(options){
-    return { type: SET_OPTIONS, options }
-}
-
-export function initializeState(initialState){
-    return { type: INITIALIZE, initialState }
-}
-
-
-export function addNotification(notification, isSystem){
-    return { type: ADD_NOTIFICATION, notification, isSystem }
-}
-
-
-export function setNotifications(notifications, isSystem){
-    return { type: SET_NOTIFICATIONS, notifications, isSystem }
-}
-
-
-export function setUid(uid) {
-    return { type: SET_UID, uid }
-}
-
-export function setPid(pid) {
-    return { type: SET_PID, pid }
-}
-
-export function setUser(user) {
-    return { type: SET_USER, user }
-}
-
-export function setParticipant(participant) {
-    return { type: SET_PARTICIPANT, participant }
-}
-
-export function setFormData(name, formData){
-    return { type: SET_FORM_DATA, name, formData  }
+  return <div>Welcome to the app</div>;
 }

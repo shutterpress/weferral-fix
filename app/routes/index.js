@@ -76,14 +76,19 @@ let initializedState = async function (dispatch) {
     user: [],
     uid: Cookies.get("uid"),
   };
-  initialState.options = await Fetcher(`${port}/api/v1/system-options/public`);
+  let opts = await Fetcher(`${port}/api/v1/system-options/public`);
+  if (!opts || typeof opts !== "object") {
+    console.error("Expected JSON for system options, got:", opts);
+    opts = {};
+  }
+  initialState.options = opts;
   try {
     if (Cookies.get("uid")) {
       // if user is logged in
-      initialState.user = (await Fetcher(`${port}/api/v1/users/own`))[0];
-      initialState.notifications = await Fetcher(
-        `${port}/api/v1/notifications/own`
-      );
+      const userResp = await Fetcher(`${port}/api/v1/users/own`);
+      initialState.user = Array.isArray(userResp) ? userResp[0] : null;
+      const notesResp = await Fetcher(`${port}/api/v1/notifications/own`);
+      initialState.notifications = Array.isArray(notesResp) ? notesResp : [];
     }
   } catch (err) {}
   return dispatch(initializeState(initialState));
