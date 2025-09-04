@@ -11,7 +11,7 @@ var config = require("./../config");
 var BASE_PATH = process.env.BASE_PATH || "/";
 
 module.exports = {
-  devtool: false,
+  devtool: source - map,
   mode: "production",
   entry: {
     app: [path.join(config.srcDir, "index.js")],
@@ -21,6 +21,10 @@ module.exports = {
     chunkFilename: "[name].chunk.js",
     path: config.distDir,
     publicPath: BASE_PATH,
+    devtoolModuleFilenameTemplate: (info) =>
+      `webpack:///${info.resourcePath}${
+        info.loaders ? `?${info.loaders}` : ""
+      }`,
   },
   resolve: {
     modules: ["node_modules", config.srcDir],
