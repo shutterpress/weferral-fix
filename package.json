@@ -4,7 +4,8 @@
   "description": "Weferral provides all the tools needed to start, manage, and grow your affiliate program",
   "main": "index.js",
   "scripts": {
-    "start": "npx serve -s dist -l $PORT",
+    "start": "npm run start:prod",
+    "start:prod": "npm run build:prod && npx serve -s dist -l $PORT",
     "build": "npm run build:prod",
     "build:prod": "node ./build/cli-tools.js --clear dist --create dist && webpack --config ./build/webpack.config.client.prod.js"
   },
