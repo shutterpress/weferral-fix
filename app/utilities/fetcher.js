@@ -1,6 +1,18 @@
 import Alert from 'react-s-alert';
 import 'whatwg-fetch';
 
+export async function Fetcher(url, options = {}) {
+  const res = await fetch(url, options);
+  const ct = res.headers.get('content-type') || '';
+  const body = ct.includes('application/json') ? await res.json() : await res.text();
+
+  if (!res.ok) {
+    const snippet = typeof body === 'string' ? body.slice(0, 400) : JSON.stringify(body).slice(0, 400);
+    throw new Error(`${res.status} ${res.statusText} ${snippet}`);
+  }
+  return body;
+}
+
 let Fetcher = function(path, method="GET", body, init=null){
     if(!init){
         let headers = new Headers({
