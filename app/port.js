@@ -1,3 +1,3 @@
-const port = "https://affiliate.shutterpress.io"
+const port = "https://shutterpress-api.up.railway.app";
 
 export default port;
