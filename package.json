@@ -114,11 +114,8 @@
     "yarn": "1.22.21",
     "zubair-react-form-builder": "^1.1.1"
   },
-  "resolutions": {
-    "faker": "^4.1.0",
-    "sockjs-client": "1.5.2"
-  },
   "overrides": {
-    "faker": "npm:@faker-js/faker@^8.4.1"
+    "faker": "npm:@faker-js/faker@^8.4.1",
+    "sockjs-client": "1.5.2"
   }
 }
