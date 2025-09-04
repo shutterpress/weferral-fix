@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run start:prod",
-    "start:prod": "npm run build:prod && npx serve -s dist -l $PORT",
+    "start:prod": "npm run build:prod && npx serve -s dist -l tcp://0.0.0.0:$PORT",
     "build": "npm run build:prod",
     "build:prod": "node ./build/cli-tools.js --clear dist --create dist && webpack --config ./build/webpack.config.client.prod.js"
   },
