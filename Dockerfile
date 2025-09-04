@@ -1,13 +1,22 @@
-FROM node:11.15
+FROM node:18-alpine
 
-WORKDIR /usr/src
+# Set working directory
+WORKDIR /usr/src/app
 
-COPY package*.json yarn* ./
+# Copy package.json and lock file first for better caching
+COPY package*.json ./
 
-RUN yarn
+# Install dependencies
+RUN npm ci
 
+# Copy the rest of the code
 COPY . .
 
+# Build the frontend
+RUN npm run build:prod
+
+# Expose the port Railway will map
 EXPOSE 4100
 
-CMD ["npm", "run", "start:prod"]
+# Start in production mode
+CMD ["npx", "serve", "-s", "dist", "-l", "4100"]
