@@ -65,7 +65,6 @@ import { Provider } from "react-redux";
 import Cookies from "js-cookie";
 import port from "../port";
 import Fetcher from "../utilities/fetcher";
-import { initializeState } from "../utilities/action";
 
 let initializedState = async function (dispatch) {
   let initialState = {
@@ -91,7 +90,7 @@ let initializedState = async function (dispatch) {
       initialState.notifications = Array.isArray(notesResp) ? notesResp : [];
     }
   } catch (err) {}
-  return dispatch(initializeState(initialState));
+  return dispatch({ type: "INITIALIZE", initialState });
 };
 
 initializedState(store.dispatch);
