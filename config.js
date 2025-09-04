@@ -20,7 +20,7 @@ var config = {
     // Site Config ====================================================
     siteTitle:              'Weferral',
     siteDescription:        'Weferral provides all the tools needed to start, manage, and grow your affiliate program',
-    siteCannonicalUrl:      'https://weferral.igambling.com',
+    siteCannonicalUrl:      'https://affiliate.shutterpress.io',
     siteKeywords:           'affiliate referral tracking open-source',
     scssIncludes:           []
 }
