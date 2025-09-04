@@ -11,7 +11,7 @@ var config = require("./../config");
 var BASE_PATH = process.env.BASE_PATH || "/";
 
 module.exports = {
-  devtool: source - map,
+  devtool: "source-map",
   mode: "production",
   entry: {
     app: [path.join(config.srcDir, "index.js")],
