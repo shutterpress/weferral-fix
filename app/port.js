@@ -1,3 +1,3 @@
-const port = "https://weferral-api.railway.internal";
+const port = "https://shutterpress-api.up.railway.app";
 
 export default port;
