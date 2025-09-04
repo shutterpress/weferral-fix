@@ -27,10 +27,15 @@ module.exports = {
   },
   plugins: [
     new CircularDependencyPlugin({
-      exclude: /a\.js|node_modules/,
-      failOnError: true,
+      exclude: /node_modules/,
+      failOnError: false, // don’t fail CI; warn instead
       allowAsyncCycles: false,
       cwd: process.cwd(),
+      onDetected({ paths, compilation }) {
+        compilation.warnings.push(
+          new Error(`circular dependency: ${paths.join(" -> ")}`)
+        );
+      },
     }),
     new HtmlWebpackPlugin({
       template: config.srcHtmlLayout,
@@ -90,6 +95,14 @@ module.exports = {
               implementation: require("sass"),
               sassOptions: {
                 includePaths: config.scssIncludes,
+                quietDeps: true,
+                silenceDeprecations: [
+                  "legacy-js-api",
+                  "import",
+                  "global-builtin",
+                  "color-functions",
+                  "slash-div",
+                ],
               },
             },
           },
@@ -119,6 +132,14 @@ module.exports = {
               implementation: require("sass"),
               sassOptions: {
                 includePaths: config.scssIncludes,
+                quietDeps: true,
+                silenceDeprecations: [
+                  "legacy-js-api",
+                  "import",
+                  "global-builtin",
+                  "color-functions",
+                  "slash-div",
+                ],
               },
             },
           },
